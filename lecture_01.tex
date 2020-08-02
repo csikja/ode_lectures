@@ -7,6 +7,8 @@
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
 
+\usepackage{amsmath, amssymb, amsfonts}
+
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
 
@@ -22,9 +24,10 @@
 \newcommand{\bp}[0]{\mathbf{p}}
 \newcommand{\bv}[0]{\mathbf{v}}
 \newcommand{\bF}[0]{\mathbf{F}}
+\DeclareMathOperator{\sign}{sign}
 
 \title{Differenciálegyenletek}
-\subtitle{Bevezetés az elméletbe és alkalmazásokba}
+\subtitle{Modellezés differenciálegyenletekkel}
 % \date{\today}
 \date{}
 \author{Csikja Rudolf}
@@ -41,21 +44,43 @@
 %\end{frame}
 
 
-\section{Modellezés differenciálegyenletekkel}
-\subsection{Populáció dinamika}
+\section{Klasszikus mechanika}
+\begin{frame}[t]{Newton-féle mozgásegyenlet}
+Newton II. törvénye szerint egy test $\bp=m\bv$ lendületének (időbeli) megváltozása
+arányos a testre ható erővel $\bp'(t) = \bF(t).$
+A sebességre vonatkozó differenciálegyenlet így
+\[\bv'(t) = \frac{1}{m}\bF(t)\]
+\end{frame}
+
+\begin{frame}[t]{Szabadesés}
+\[
+\begin{split}
+v_z'(t)   &= -\frac{1}{m}F_g\\
+x_z'(t) &= v_z(t)
+\end{split}
+\]
+\end{frame}
+
+\begin{frame}[t]{Szabadesés légellenállással}
+\[
+v'(t) = -\frac{1}{m}F_g - \frac{1}{m}F_D(v(t)), \qquad 
+F_D(v) = \frac{1}{2}\rho C_D A v^2 \sign(v)
+\]
+\[v'(t) = -g + \frac{\rho C_D A}{2m} v^2(t)\]
+A végsebesség feltétele $v'(t) = 0,$ amiből $V_{T} = \pm\sqrt{\frac{2 g m}{\rho C_D A}}.$
+Az eredeti egyenlet felírható így:
+\[v'(t) = -g\left(1-\left(\frac{v(t)}{V_T}\right)^2\right)\]
+Megoldás:
+\[v(t) = V_T \left(\frac{2}{ 1 + \frac{V_T - v_0}{V_T + v_0}e^{\frac{2g}{V_T}t }} - 1\right)\]
+\end{frame}
+
+\section{Populáció dinamika}
 \begin{frame}[t]{Exponenciális mövekedés}
-\[x(t+\Delta t) = x(t) +  \Delta t\cdot k x(t) + \varepsilon(\Delta t), \qquad \lim_{\Delta t\to 0} \varepsilon(\Delta t) = 0\]
+\[x(t+\Delta t) = x(t) +  \Delta t\big(k x(t) +  \varepsilon(\Delta t)\big), \qquad \lim_{\Delta t\to 0} \varepsilon(\Delta t) = 0\]
 \end{frame}
 
 
-\subsection{}
-\begin{frame}[t]{Newton féle mozgásegyenletek}
-Newton II. törvénye szerint egy test lendületének (időbeli) megváltozása
-arányos a testre ható erővel $\dot \bp = \bF.$
-Feltéve, hogy a tömeg állandó $\bp=m\bv$
 
-\[v(t) = v(0) + \frac{1}{m}\int_0^t F(\tau)\, d\tau\]
-\end{frame}
 
 
 \end{document}
