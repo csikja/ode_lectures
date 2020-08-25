@@ -1,0 +1,28 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\usepackage{xcolor}
+\usepackage{newtxmath}
+\usepackage{newtxtext}
+
+% \usepackage[sfdefault, lining]{FiraSans}
+% \renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+
+\colorlet{helpLine}{black!40}
+\definecolor{force}{rgb}{0, 0, 0}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+\begin{axis}[
+domain=-10:10,
+xlabel={$v$},
+ylabel={$F_D$},
+title={Légellenállás a sebesség függvényében.}]
+\addplot[color=red]{-0.5*sign(x)*x^2};
+\end{axis}
+\end{tikzpicture}
+\end{document}

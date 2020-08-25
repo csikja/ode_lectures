@@ -55,31 +55,39 @@ A sebességre vonatkozó differenciálegyenlet így
 \begin{frame}[t]{Szabadesés}
 \[
 \begin{split}
-v_z'(t)   &= -\frac{1}{m}F_g\\
-x_z'(t) &= v_z(t)
+v'(t)   &= \frac{1}{m}F_g = g
 \end{split}
 \]
+hence
+\[v(t) = v(0) + g t\]
+Másfél perces esés végére a sebesség meghaladná a $3000\,$km/h-t.
 \end{frame}
 
 \begin{frame}[t]{Szabadesés légellenállással}
-\[
-v'(t) = -\frac{1}{m}F_g - \frac{1}{m}F_D(v(t)), \qquad 
-F_D(v) = \frac{1}{2}\rho C_D A v^2 \sign(v)
-\]
-\[v'(t) = -g + \frac{\rho C_D A}{2m} v^2(t)\]
-A végsebesség feltétele $v'(t) = 0,$ amiből $V_{T} = \pm\sqrt{\frac{2 g m}{\rho C_D A}}.$
-Az eredeti egyenlet felírható így:
-\[v'(t) = -g\left(1-\left(\frac{v(t)}{V_T}\right)^2\right)\]
+\begin{columns}
+\column{0.5\textwidth}
+    \[
+    v'(t) = -\frac{1}{m}F_g + \frac{1}{m}F_D(v(t))
+    \]
+    a légellenállásból származó erő
+    \[
+    F_D(v) = -\frac{1}{2}\rho C_D A v^2 \sign(v)
+    \]
+    \begin{center}
+    \includegraphics[width=0.8\textwidth]{drag_force.pdf}
+    \end{center}
+    \[v'(t) = -g + \frac{\rho C_D A}{2m} v^2(t), \quad v(t)\le 0.\]
+\column{0.5\textwidth}
+    \[v'(t) = -g\left(1-\left(\frac{v(t)}{V_T}\right)^2\right)\]
+    A végsebesség feltétele $v'(t) = 0,$ amiből $V_{T} = \pm\sqrt{\frac{2 g m}{\rho C_D A}}.$
+    \begin{center}
+        \includegraphics[scale=0.05]{skydive.png}
+    \end{center}
+    Az eredeti egyenlet felírható így:
 Megoldás:
 \[v(t) = V_T \left(\frac{2}{ 1 + \frac{V_T - v_0}{V_T + v_0}e^{\frac{2g}{V_T}t }} - 1\right)\]
+\end{columns}
 \end{frame}
-
-\section{Populáció dinamika}
-\begin{frame}[t]{Exponenciális mövekedés}
-\[x(t+\Delta t) = x(t) +  \Delta t\big(k x(t) +  \varepsilon(\Delta t)\big), \qquad \lim_{\Delta t\to 0} \varepsilon(\Delta t) = 0\]
-\end{frame}
-
-
 
 
 

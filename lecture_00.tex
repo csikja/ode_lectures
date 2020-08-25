@@ -1,0 +1,187 @@
+\documentclass[10pt]{beamer}
+%\usepackage[utf8]{inputenc}
+
+\usetheme[progressbar=frametitle, block=fill]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{enumitem, multicol}
+\usepackage{amsmath, amssymb, amsfonts}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+% \usecolortheme{seahorse}
+
+\usepackage[sfdefault, lining]{FiraSans}
+\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+\usepackage{newtxsf}
+\usepackage{microtype}
+
+\renewcommand{\emph}[1]{{\bf #1}}
+
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\C}[0]{\mathbb{C}}
+\newcommand{\bp}[0]{\mathbf{p}}
+\newcommand{\bv}[0]{\mathbf{v}}
+\newcommand{\bF}[0]{\mathbf{F}}
+\DeclareMathOperator{\sign}{sign}
+
+\title{Differenciálegyenletek}
+\subtitle{Előismeretek}
+% \date{\today}
+\date{}
+\author{Csikja Rudolf}
+\institute{Budapesti Műszaki és Gazdaságtudományi Egyetem\\Matemaikai Intézet, Analízis Tanszék}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+%\begin{frame}{Table of contents}
+%  \setbeamertemplate{section in toc}[sections numbered]
+%  \tableofcontents%[hideallsubsections]
+%\end{frame}
+
+
+\section{Analízis}
+\begin{frame}[t]{Függvények}
+A függvény egy \emph{hozzárendelési szabály}, például az
+$f\colon\R\to\R$ skalár függvény vagy a $g\colon\R\to\R^n$ vektor függvény.
+
+Az $f$ függvény értéke az $x\in\R$ helyen egy \emph{valós szám}: $f(x)\in\R.$
+A $g$ függvény értéke a $t\in\R$ helyen $g(t)\in\R^n$, egy $n$-dimenziós \emph{vektor}.
+
+A hozzárendelési szabályt gyakran formulával adjuk meg, például
+\[f(x) = \sin(x), \quad g(t) = \begin{bmatrix}3t^2 - t + 1\\ 1 + t\ln(t)\end{bmatrix}.\]
+A függvényeknek van \emph{értelmezési tartománya} (és értékkészlete is).
+Sőt, az értelmezési tartomány a függvény definíciójának része!
+Az
+\[x\mapsto x^2 \quad (x\in\R) \qquad \text{és} \qquad x \mapsto x^2\quad (x\in\R^+)\]
+függvények nem azonosak.
+\end{frame}
+
+\begin{frame}[t]{Függvények: modellezés}
+A függvények alkalmasak fizikai változók modellezésére.
+Például egy kemence hőmérsékletét az időben jellemezhetjük
+egy $T\colon \R \to \R$ függvénnyel.
+Így a $t\in\R$ időpontban a kemence hőmérsékletét
+a $T(t)$ valós szám adja meg.
+
+Egyszerre több változó modellezésére alkalmas a vektor függvény.
+Például, ha a kemencében lévő nyomást ($P$) is számbavesszük, az
+\[X:=\begin{bmatrix}T \\ P\end{bmatrix}\]
+vektor függvény egy alkalmas matematikai model lehet a kemence leírására,
+hiszen az $X(t)\in\R^2$ vektor megadja a kemence hőmérsékletét és nyomását tetszőleges $t\in\R$ időpontban.
+\end{frame}
+
+
+
+\begin{frame}[t]{Differenciálszámítás}
+Alapvető fontosságú az alábbi kifejezések ismerete és azok gyakorlatban való alkalmazása!
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+\toprule
+$f(x)$ & $f'(x)$ \\
+\midrule
+$x^n$ & $n x^{n-1}$\\
+$e^x$ & $e^x$\\
+$\sin(x)$ & $\cos(x)$\\
+$\cos(x)$ & $-\sin(x)$
+\end{tabular}
+\end{table}
+
+\[(cf)' = cf', \quad (fg)' = f'g + fg', \quad \left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}\]
+\[(f\circ g)' = (f'\circ g) g', \quad \left(f^{-1}\right)' = \frac{1}{f'\circ f^{-1}}\]
+\end{frame}
+
+\begin{frame}[t]{Példa: logaritmus}
+Számítsuk ki a logaritmus függvény deriváltját, mint az exponenciális függvény inverzének deriváltja.
+
+Tehát legyen $f(x):=e^x$ $x\in\R,$ aminek inverze $f^{-1}(x) = \ln(x)$ $x\in\R^+.$
+Alkalmazva $f$-et inverzére
+\[x = f(f^{-1}(x)) = e^{\ln(x)} \quad x\in\R^+,\]
+majd deriválva mindkét oldalt: $1 = e^{\ln(x)} (\ln(x))'$ megkapjuk
+a logaritmus deriváltját:
+\[(\ln(x))' = \frac{1}{e^{\ln(x)}} = \frac{1}{x}  \quad x\in\R^+.\]
+\begin{exampleblock}{Feladat}
+Számoljuk ki az $\ln(g(x))$ deriváltját!
+\end{exampleblock}
+\end{frame}
+
+
+
+\section{Lineáris Algebra}
+\begin{frame}[t]{Lineáris kombináció}
+A $v_1, v_2, v_3, \dots,v_N$ vektorok lineáris kombinációja:
+\[c_1 v_1 + c_2 v_2 + c_3 v_3 + \dots + c_N v_N,\]
+a $c_1, c_2, c_3,\dots, c_N\in\R$ együttatókkal.
+
+\end{frame}
+
+\section{Komplex Számok}
+\begin{frame}[t]{Komplex számok}
+\begin{columns}[t]
+\begin{column}{0.48\linewidth}
+{\bf Komplex számok alakjai}
+\[z = x + iy = r\cos(\varphi) + ir\sin(\varphi)\]
+\[x = r\cos(\varphi) \quad y = r\sin(\varphi)\]
+\[r^2 = x^2 + y^2 \quad \tan(\varphi) = \frac{y}{x}\]
+\begin{block}{Euler formula}
+ \[e^{i\varphi} = \cos(\varphi) + i\sin(\varphi)\]
+\end{block}
+{\bf Komplex konjugált}
+\[z^* = a - ib = r e^{-i\varphi}\]
+\[z z^* = |z|^2 \quad \frac{z + z*}{2} = a \quad \frac{z - z*}{2} = b\]
+\end{column}
+
+\begin{column}{0.48\linewidth}
+{\bf Műveletek}
+\[z = a + ib = re^{i\varphi}, \quad w = c + id = se^{i\theta}\]
+\[z \pm w = (a+c) \pm i (b+d)\] 
+\[z w = (ac - bd) + i (ad + bc) = rse^{i(\varphi + \theta)}\]
+\[\frac{1}{z} = \frac{z^*}{|z|^2} = \frac{a-ib}{a^2 + b^2} = \frac{1}{r} e^{-i\varphi}\]
+\begin{block}{Egységgyökök}
+A $z^n = 1$ egyenlet megoldásai:
+\[z_k = \cos\left(2\pi\frac{k}{n}\right) + i\sin\left(2\pi\frac{k}{n}\right)\]
+$k=0,1,2,\dots,n-1.$ 
+\end{block}
+\end{column}
+\end{columns}    
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\resizebox{!}{\textheight}{%
+\begin{tikzpicture}[scale=4.0,cap=round,>=latex]
+ \input{unit_circle.tkz}
+\end{tikzpicture}
+}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{}
+\begin{exampleblock}{Feladat}
+Határozzuk meg az alábbi komplex számok algebrai alakjait:
+\[ \frac{1}{i}, \quad \dfrac{1}{3-4i}, \quad e^{i2020\pi}, \quad ie^{i\frac{\pi}{2}}\]
+\end{exampleblock}
+
+\begin{exampleblock}{Feladat}
+Oljduk meg az alábbi egyenleteket ($z\in\C$)
+\[z^2 - 2z + 5 = 0, \quad z^3 = 1, \quad z^i = -1.\]
+\end{exampleblock}
+
+\begin{exampleblock}{Feladat}
+Fejezzük ki a $\cos(3x)$-et $\cos(x)$ polinomjaként:
+\[\cos(3x) = a_0 + a_1 \cos(x) + a_2 \cos^2(x) + a_3 \cos^3(x).\]
+{\tiny Alkalmazzuk az Euler formulát az $e^{i3x} = (e^{ix})^3$ egyenletre, majd hasonlítsuk össze az egyenlet két oldalát.}
+\end{exampleblock}
+\end{frame}
+\end{document}
