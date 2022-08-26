@@ -3,7 +3,6 @@
 
 \usetheme[progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
-
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
 
@@ -20,11 +19,15 @@
 \usepackage{newtxsf}
 \usepackage{microtype}
 
+\usepackage{commath}
+
 \newcommand{\R}[0]{\mathbb{R}}
 \newcommand{\bp}[0]{\mathbf{p}}
+\newcommand{\be}[0]{\mathbf{e}}
 \newcommand{\bv}[0]{\mathbf{v}}
 \newcommand{\bF}[0]{\mathbf{F}}
 \DeclareMathOperator{\sign}{sign}
+\newcommand{\dlt}{\Delta t}
 
 \title{Differenciálegyenletek}
 \subtitle{Modellezés differenciálegyenletekkel}
@@ -43,6 +46,40 @@
 %  \tableofcontents%[hideallsubsections]
 %\end{frame}
 
+\section{Közönséges differenciálegyenletek}
+\begin{frame}[t]{Matematikai modellezés}
+\[x(t+\dlt) = x(t) + f(t, x(t))\dlt + \varepsilon(\dlt) \dlt\]
+ \[\lim_{\dlt \to 0} \varepsilon(\dlt) = 0\]
+ \[\lim_{\dlt \to 0} \frac{x(t+\dlt) - x(t)}{\dlt} = f(t, x(t)) + \lim_{\dlt \to 0} \varepsilon(\dlt)\]
+  \[x'(t) = f(t, x(t))\]
+\end{frame}
+
+\section{Populációdinamika}
+\begin{frame}[t]{Exponenciális növekedés}
+\[x'(t) = k x(t)\]
+\end{frame}
+
+\begin{frame}[t]{Korlátozott növekedés}
+Annak érdekében, hogy figyelembe vegyük a véges erőforrást
+az exponenciális növekedés modeljében a növekedési rátát módosítjuk.
+A növekedési rátát függővé tesszük a populáció nagyságától:
+\[x'(t) = K(x(t)) x(t).\]
+\begin{itemize}
+\item Továbbra is elvárjuk, hogy kicsi populációra a növekedési ráta ugyanaz legyen,
+mint az expononenciális növekedés modeljében: $K(0) = k.$
+\item Ugyanakkor azt is elvárjuk, hogy egy bizonyos populáció elérésénél a növekedési
+ráta nulla legyen: $K(L) = 0.$
+\end{itemize}
+A lehető legegyszerűbb függvény, ami megfelel a fenti feltételeknek a
+\[K(p) = k - \frac{k}{L}p\]
+egyenes.
+\end{frame}
+
+\begin{frame}[t]{Korlátozott növekedés}
+ \[x'(t) = k x(t)\left(1 - \frac{x(t)}{L}\right)\]
+\end{frame}
+
+
 
 \section{Klasszikus mechanika}
 \begin{frame}[t]{Newton-féle mozgásegyenlet}
@@ -50,6 +87,37 @@ Newton II. törvénye szerint egy test $\bp=m\bv$ lendületének (időbeli) megv
 arányos a testre ható erővel $\bp'(t) = \bF(t).$
 A sebességre vonatkozó differenciálegyenlet így
 \[\bv'(t) = \frac{1}{m}\bF(t)\]
+\end{frame}
+
+\begin{frame}[t]{Centrális erőtér}
+\[F = \]
+\[\bF = \begin{bmatrix}
+         F_x\\ F_y
+        \end{bmatrix}
+        \sim 
+        F = F_x + i F_y
+\]
+\[z = x + iy = r e^{i \theta}\]
+\[z' = r' e^{i \theta} + i r \theta' e^{i \theta}\]
+\[z'' = r'' e^{i \theta} + 2 i r' \theta' e^{i \theta} + i r \theta'' e^{i \theta} - r \theta'^2 e^{i\theta}\]
+\[\frac{\theta''}{\theta'} = -2\frac{r'}{r}\quad  \to \quad \theta' = \frac{1}{r^2}\]
+
+\end{frame}
+
+
+\begin{frame}[t]{Gravitáció}
+\[
+\bF_{12} = G \frac{m_1 m_2}{r^2}\be_r
+\]
+
+\[F_g = GM \frac{m}{r^2}\]
+
+\[E_p(x) = \int_{R}^x \frac{mMg}{r^2}\, \dif r\]
+
+Szökési sebesség:
+\[\frac{1}{2}m v_{\infty}^2 = E_p(\infty) = GM\frac{m}{R}\]
+\[v_\infty = \sqrt{\frac{2 GM}{R}}\approx 11.186\, \mathsf{km/s}\]
+
 \end{frame}
 
 \begin{frame}[t]{Szabadesés}
